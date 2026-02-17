@@ -1,86 +1,97 @@
-import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
-import { InfoCard } from '@/components/InfoCard';
-import { useTheme } from '@/hooks/useTheme';
+import React from "react";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default function InfoScreen() {
-  const theme = useTheme();
-
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        <View style={styles.header}>
-          <Text style={[styles.title, { color: theme.text }]}>How It Works</Text>
-          <Text style={[styles.subtitle, { color: theme.textTertiary }]}>
-            A concept, plus the real-world limitations
-          </Text>
-        </View>
-        <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: theme.text }]}>What happens when you tap "Clear"</Text>
-          <Text style={[styles.paragraph, { color: theme.textSecondary }]}>
-            Badge Buster is built around a simple idea: clearing every notification badge across your phone.
-          </Text>
-          <Text style={[styles.paragraph, { color: theme.textSecondary }]}>
-            In practice, modern mobile operating systems prevent apps from modifying notifications or badges belonging to other apps.
-          </Text>
-        </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.title}>Badge Buster</Text>
+      <Text style={styles.lede}>
+        Badge Buster is a UX concept exploring the idea of clearing notification
+        badges and reducing interface noise.
+      </Text>
 
-        <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: theme.text }]}>What it won’t do</Text>
-          <Text style={[styles.paragraph, { color: theme.textSecondary }]}>
-            Mobile operating systems sandbox apps for security and privacy.
-          </Text>
-          <Text style={[styles.paragraph, { color: theme.textSecondary }]}>
-            This means Badge Buster cannot reset badges or notifications from other apps like Messages, WhatsApp, Instagram, or Mail.
-          </Text>
-          <Text style={[styles.paragraph, { color: theme.textSecondary }]}>
-            If badges persist, they must be cleared directly within those apps or adjusted through your device’s notification settings.
-          </Text>
-        </View>
+      <Section title="How It Works">
+        <Text style={styles.paragraph}>
+          Badge Buster is built around a simple idea: clearing every
+          notification badge across your phone.
+        </Text>
+        <Text style={styles.paragraph}>
+          In practice, modern mobile operating systems prevent apps from
+          modifying notifications or badges belonging to other apps.
+        </Text>
+      </Section>
 
-        <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: theme.text }]}>About Badge Buster</Text>
-          <Text style={[styles.paragraph, { color: theme.textSecondary }]}>
-            Badge Buster is a UX concept exploring notification reset, attention management, and digital decluttering.
-          </Text>
-          <Text style={[styles.paragraph, { color: theme.textSecondary }]}>
-            While platform restrictions prevent global badge control, the project reflects a common user frustration: persistent interface noise.
-          </Text>
-        </View>
+      <Section title="What It Won’t Do">
+        <Text style={styles.paragraph}>
+          Mobile operating systems sandbox apps for security and privacy.
+        </Text>
+        <Text style={styles.paragraph}>
+          This means Badge Buster cannot reset badges or notifications from
+          other apps like Messages, WhatsApp, Instagram, or Mail.
+        </Text>
+        <Text style={styles.paragraph}>
+          If badges persist, they must be cleared directly within those apps or
+          adjusted through your device’s notification settings.
+        </Text>
+      </Section>
+
+      <Section title="About">
+        <Text style={styles.paragraph}>
+          Badge Buster is a UX concept exploring notification reset, attention
+          management, and digital decluttering.
+        </Text>
+        <Text style={styles.paragraph}>
+          While platform restrictions prevent global badge control, the project
+          reflects a common user frustration: persistent interface noise.
+        </Text>
+      </Section>
+    </ScrollView>
+  );
+}
+
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <View style={styles.section}>
+      <Text style={styles.sectionTitle}>{title}</Text>
+      {children}
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingHorizontal: 16,
-    paddingVertical: 24,
-  },
-  header: {
-    marginTop: 20,
-    marginBottom: 24,
+    padding: 20,
+    paddingBottom: 40,
   },
   title: {
-    fontFamily: 'Inter-Bold',
     fontSize: 28,
+    fontWeight: "700",
     marginBottom: 8,
   },
-  subtitle: {
-    fontFamily: 'Inter-Regular',
-    fontSize: 16,
+  lede: {
+    fontSize: 15,
+    lineHeight: 22,
+    opacity: 0.85,
+    marginBottom: 18,
   },
   section: {
-    marginBottom: 24,
+    marginTop: 18,
   },
   sectionTitle: {
-    fontFamily: 'Inter-SemiBold',
-    fontSize: 20,
-    marginBottom: 12,
+    fontSize: 18,
+    fontWeight: "700",
+    marginBottom: 10,
   },
   paragraph: {
-    fontFamily: 'Inter-Regular',
-    fontSize: 16,
-    lineHeight: 24,
-    marginBottom: 16,
+    fontSize: 15,
+    lineHeight: 22,
+    opacity: 0.9,
+    marginBottom: 10,
   },
 });
