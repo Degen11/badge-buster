@@ -17,6 +17,8 @@ export default function InfoScreen() {
           notification badge across your phone.
         </Text>
 
+        <Separator />
+
         <Text style={styles.paragraph}>
           In practice, modern mobile operating systems prevent apps from
           modifying notifications or badges belonging to other apps.
@@ -28,10 +30,14 @@ export default function InfoScreen() {
           Mobile operating systems sandbox apps for security and privacy.
         </Text>
 
+        <Separator />
+
         <Text style={styles.paragraph}>
           This means Badge Buster cannot reset badges or notifications from
           other apps like Messages, WhatsApp, Instagram, or Mail.
         </Text>
+
+        <Separator />
 
         <Text style={styles.paragraph}>
           If badges persist, they must be cleared directly within those apps or
@@ -46,6 +52,8 @@ export default function InfoScreen() {
           Badge Buster is a UX concept exploring notification reset, attention
           management, and digital decluttering.
         </Text>
+
+        <Separator light />
 
         <Text style={styles.bubbleText}>
           While platform restrictions prevent global badge control, the project
@@ -75,6 +83,17 @@ function AboutBubble({ children }: { children: React.ReactNode }) {
   return <View style={styles.bubble}>{children}</View>;
 }
 
+function Separator({ light = False }: { light?: boolean }) {
+  return (
+    <View
+      style={[
+        styles.separator,
+        light && styles.separatorLight,
+      ]}
+    />
+  );
+}
+
 const styles = StyleSheet.create({
   container: {
     padding: 20,
@@ -90,42 +109,58 @@ const styles = StyleSheet.create({
   lede: {
     fontSize: 15,
     lineHeight: 22,
-    opacity: 0.8,
-    marginBottom: 22,
+    opacity: 0.75,
+    marginBottom: 24,
   },
 
+  /* Glass / Frosted Card */
+
   card: {
-    backgroundColor: "rgba(255,255,255,0.04)",
-    borderRadius: 14,
-    padding: 16,
+    backgroundColor: "rgba(255,255,255,0.06)",  // glass effect 😏
+    borderRadius: 16,
+    padding: 18,
     marginBottom: 14,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.08)",
   },
 
   cardTitle: {
     fontSize: 17,
     fontWeight: "700",
-    marginBottom: 10,
+    marginBottom: 12,
   },
 
   paragraph: {
     fontSize: 15,
     lineHeight: 22,
     opacity: 0.9,
-    marginBottom: 10,
+    marginVertical: 10,
   },
 
+  separator: {
+    height: 1,
+    backgroundColor: "rgba(255,255,255,0.08)",  // subtle divider
+    marginVertical: 6,
+  },
+
+  separatorLight: {
+    backgroundColor: "rgba(255,255,255,0.25)",  // for bubble
+  },
+
+  /* Softer Blue Bubble */
+
   bubble: {
-    marginTop: 10,
-    backgroundColor: "#0A84FF",   // iOS-style blue 😏
-    borderRadius: 18,
-    padding: 18,
+    marginTop: 6,
+    backgroundColor: "#2F6FED",   // softer / premium blue ✅
+    borderRadius: 22,
+    padding: 20,
   },
 
   bubbleTitle: {
     fontSize: 17,
     fontWeight: "700",
     color: "white",
-    marginBottom: 10,
+    marginBottom: 12,
   },
 
   bubbleText: {
@@ -133,6 +168,6 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     color: "white",
     opacity: 0.95,
-    marginBottom: 10,
+    marginVertical: 6,
   },
 });
