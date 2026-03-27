@@ -258,21 +258,11 @@
       transition: background 0.4s ease;
     }
 
-    .app-icon svg {
+    .app-icon img {
       width: 20px;
       height: 20px;
-      stroke: var(--icon-stroke);
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+      object-fit: contain;
     }
-
-    /* Grid icon colors */
-    .app-row .app-icon:nth-child(1) { background: rgba(59, 130, 246, 0.35); }
-    .app-row .app-icon:nth-child(2) { background: rgba(52, 199, 89, 0.3); }
-    .app-row .app-icon:nth-child(3) { background: rgba(255, 149, 0, 0.3); }
-    .app-row .app-icon:nth-child(4) { background: rgba(175, 82, 222, 0.3); }
 
     .dock {
       background: var(--dock-bg);
@@ -291,10 +281,6 @@
       height: 38px;
     }
 
-    .dock .app-icon:nth-child(1) { background: rgba(52, 199, 89, 0.35); }
-    .dock .app-icon:nth-child(2) { background: rgba(59, 130, 246, 0.35); }
-    .dock .app-icon:nth-child(3) { background: rgba(255, 59, 48, 0.3); }
-    .dock .app-icon:nth-child(4) { background: rgba(255, 204, 0, 0.3); }
 
     /* ─── Badges ─── */
     .badge {
@@ -566,72 +552,72 @@
           <div class="app-grid">
             <!-- Row 1 -->
             <div class="app-row">
-              <div class="app-icon">
-                <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+              <div class="app-icon" style="background: #EA4335;">
+                <img src="https://cdn.simpleicons.org/gmail/ffffff" alt="Gmail">
                 <span class="badge pop">3</span>
               </div>
-              <div class="app-icon">
-                <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <div class="app-icon" style="background: #25D366;">
+                <img src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="WhatsApp">
                 <span class="badge pop">12</span>
               </div>
-              <div class="app-icon">
-                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+              <div class="app-icon" style="background: linear-gradient(135deg, #833AB4, #E1306C, #F77737);">
+                <img src="https://cdn.simpleicons.org/instagram/ffffff" alt="Instagram">
                 <span class="badge pop">1</span>
               </div>
-              <div class="app-icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <div class="app-icon" style="background: #1DA1F2;">
+                <img src="https://cdn.simpleicons.org/x/ffffff" alt="X">
                 <span class="badge pop">5</span>
               </div>
             </div>
             <!-- Row 2 -->
             <div class="app-row">
-              <div class="app-icon">
-                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <div class="app-icon" style="background: #5865F2;">
+                <img src="https://cdn.simpleicons.org/discord/ffffff" alt="Discord">
                 <span class="badge pop">8</span>
               </div>
-              <div class="app-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              <div class="app-icon" style="background: #1DB954;">
+                <img src="https://cdn.simpleicons.org/spotify/ffffff" alt="Spotify">
               </div>
-              <div class="app-icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <div class="app-icon" style="background: #FF0000;">
+                <img src="https://cdn.simpleicons.org/youtube/ffffff" alt="YouTube">
                 <span class="badge pop">2</span>
               </div>
-              <div class="app-icon">
-                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              <div class="app-icon" style="background: #0088CC;">
+                <img src="https://cdn.simpleicons.org/telegram/ffffff" alt="Telegram">
               </div>
             </div>
             <!-- Row 3 -->
             <div class="app-row">
-              <div class="app-icon">
-                <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+              <div class="app-icon" style="background: #FF2D55;">
+                <img src="https://cdn.simpleicons.org/tiktok/ffffff" alt="TikTok">
               </div>
-              <div class="app-icon">
-                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <div class="app-icon" style="background: #0A66C2;">
+                <img src="https://cdn.simpleicons.org/linkedin/ffffff" alt="LinkedIn">
                 <span class="badge pop">99</span>
               </div>
-              <div class="app-icon">
-                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <div class="app-icon" style="background: #FF6719;">
+                <img src="https://cdn.simpleicons.org/substack/ffffff" alt="Substack">
               </div>
-              <div class="app-icon">
-                <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <div class="app-icon" style="background: #7C3AED;">
+                <img src="https://cdn.simpleicons.org/slack/ffffff" alt="Slack">
                 <span class="badge pop">7</span>
               </div>
             </div>
           </div>
           <div class="dock">
-            <div class="app-icon">
-              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div class="app-icon" style="background: #34C759;">
+              <img src="https://cdn.simpleicons.org/imessage/ffffff" alt="Messages">
               <span class="badge pop">24</span>
             </div>
-            <div class="app-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            <div class="app-icon" style="background: #007AFF;">
+              <img src="https://cdn.simpleicons.org/safari/ffffff" alt="Safari">
               <span class="badge pop">6</span>
             </div>
-            <div class="app-icon">
-              <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            <div class="app-icon" style="background: #FC3D39;">
+              <img src="https://cdn.simpleicons.org/applemusic/ffffff" alt="Apple Music">
             </div>
-            <div class="app-icon">
-              <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <div class="app-icon" style="background: #FF9500;">
+              <img src="https://cdn.simpleicons.org/appstore/ffffff" alt="App Store">
               <span class="badge pop">41</span>
             </div>
           </div>
