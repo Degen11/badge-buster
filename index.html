@@ -531,6 +531,24 @@
     @keyframes phone-in {
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
+
+    /* ─── Circular theme reveal ─── */
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+
+    ::view-transition-new(root) {
+      z-index: 1;
+    }
+
+    [data-theme="light"]::view-transition-old(root) {
+      z-index: 1;
+    }
+    [data-theme="light"]::view-transition-new(root) {
+      z-index: -1;
+    }
   </style>
 </head>
 <body>
@@ -766,20 +784,61 @@
       cleared = false;
     }
 
-    // ─── Theme Toggle ───
+    // ─── Theme Toggle with circular reveal ───
     const toggle = document.getElementById('themeToggle');
     const saved = localStorage.getItem('theme');
-    if (saved) document.documentElement.setAttribute('data-theme', saved);
+    if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
 
-    toggle.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'light' ? 'dark' : 'light';
+    function applyTheme(next) {
       if (next === 'dark') {
         document.documentElement.removeAttribute('data-theme');
       } else {
         document.documentElement.setAttribute('data-theme', next);
       }
       localStorage.setItem('theme', next);
+    }
+
+    toggle.addEventListener('click', (e) => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+
+      // Fallback for browsers without View Transitions API
+      if (!document.startViewTransition) {
+        applyTheme(next);
+        return;
+      }
+
+      // Get click position (center of toggle button)
+      const x = e.clientX || toggle.getBoundingClientRect().left + toggle.offsetWidth / 2;
+      const y = e.clientY || toggle.getBoundingClientRect().top + toggle.offsetHeight / 2;
+
+      // Calculate radius needed to cover the entire page
+      const maxRadius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
+      );
+
+      const transition = document.startViewTransition(() => {
+        applyTheme(next);
+      });
+
+      transition.ready.then(() => {
+        const clipStart = `circle(0px at ${x}px ${y}px)`;
+        const clipEnd = `circle(${maxRadius}px at ${x}px ${y}px)`;
+
+        // When going to dark mode, animate the OLD snapshot (shrink circle to reveal dark underneath)
+        // When going to light mode, animate the NEW snapshot (grow circle to reveal light)
+        const isDark = next === 'dark';
+
+        document.documentElement.animate(
+          { clipPath: isDark ? [clipEnd, clipStart] : [clipStart, clipEnd] },
+          {
+            duration: 500,
+            easing: 'ease-in-out',
+            pseudoElement: isDark ? '::view-transition-old(root)' : '::view-transition-new(root)',
+          }
+        );
+      });
     });
   </script>
 </body>
