@@ -539,15 +539,18 @@
       mix-blend-mode: normal;
     }
 
-    ::view-transition-new(root) {
+    .theme-transition-dark::view-transition-old(root) {
+      z-index: 999;
+    }
+    .theme-transition-dark::view-transition-new(root) {
       z-index: 1;
     }
 
-    [data-theme="light"]::view-transition-old(root) {
+    .theme-transition-light::view-transition-old(root) {
       z-index: 1;
     }
-    [data-theme="light"]::view-transition-new(root) {
-      z-index: -1;
+    .theme-transition-light::view-transition-new(root) {
+      z-index: 999;
     }
   </style>
 </head>
@@ -801,6 +804,7 @@
     toggle.addEventListener('click', (e) => {
       const current = document.documentElement.getAttribute('data-theme');
       const next = current === 'light' ? 'dark' : 'light';
+      const isDark = next === 'dark';
 
       // Fallback for browsers without View Transitions API
       if (!document.startViewTransition) {
@@ -808,28 +812,30 @@
         return;
       }
 
-      // Get click position (center of toggle button)
-      const x = e.clientX || toggle.getBoundingClientRect().left + toggle.offsetWidth / 2;
-      const y = e.clientY || toggle.getBoundingClientRect().top + toggle.offsetHeight / 2;
-
-      // Calculate radius needed to cover the entire page
-      const maxRadius = Math.hypot(
-        Math.max(x, window.innerWidth - x),
-        Math.max(y, window.innerHeight - y)
-      );
+      // Set transition direction class before snapshot
+      document.documentElement.classList.add(isDark ? 'theme-transition-dark' : 'theme-transition-light');
 
       const transition = document.startViewTransition(() => {
         applyTheme(next);
       });
 
       transition.ready.then(() => {
+        // Get position from the toggle button center
+        const rect = toggle.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+
+        // Calculate radius needed to cover the entire page
+        const maxRadius = Math.hypot(
+          Math.max(x, window.innerWidth - x),
+          Math.max(y, window.innerHeight - y)
+        );
+
         const clipStart = `circle(0px at ${x}px ${y}px)`;
         const clipEnd = `circle(${maxRadius}px at ${x}px ${y}px)`;
 
-        // When going to dark mode, animate the OLD snapshot (shrink circle to reveal dark underneath)
-        // When going to light mode, animate the NEW snapshot (grow circle to reveal light)
-        const isDark = next === 'dark';
-
+        // Going dark: shrink the old (light) snapshot away
+        // Going light: expand the new (light) snapshot over
         document.documentElement.animate(
           { clipPath: isDark ? [clipEnd, clipStart] : [clipStart, clipEnd] },
           {
@@ -838,6 +844,10 @@
             pseudoElement: isDark ? '::view-transition-old(root)' : '::view-transition-new(root)',
           }
         );
+      });
+
+      transition.finished.then(() => {
+        document.documentElement.classList.remove('theme-transition-dark', 'theme-transition-light');
       });
     });
   </script>
