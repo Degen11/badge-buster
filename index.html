@@ -5,9 +5,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Badge Buster</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <meta name="description" content="Badge Buster is a UX concept that lets you clear every notification badge from your home screen with one tap. A design exploration of a calmer phone experience." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Badge Buster" />
+  <meta property="og:description" content="One tap to wipe every red dot off your home screen. A UX concept for a calmer phone." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/favicon.svg" />
+  <meta property="og:url" content="https://badge-buster.vercel.app" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Badge Buster" />
+  <meta name="twitter:description" content="One tap to wipe every red dot off your home screen. A UX concept for a calmer phone." />
+
+  <!-- Fonts -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700&family=Outfit:wght@300;400;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700&family=Outfit:wght@300;400;600;700;800&display=swap" /></noscript>
+
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
@@ -32,6 +45,25 @@
       --dock-bg: rgba(255, 255, 255, 0.04);
       --font-display: 'Outfit', sans-serif;
       --font-body: 'DM Sans', sans-serif;
+      --toggle-bg: rgba(255, 255, 255, 0.08);
+      --toggle-knob: #fff;
+      --icon-stroke: rgba(255, 255, 255, 0.7);
+    }
+
+    [data-theme="light"] {
+      --bg: #f0f0f5;
+      --surface: #ffffff;
+      --surface-alt: #e8e8f0;
+      --text: #1a1a2e;
+      --text-dim: #6b6b80;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.2);
+      --phone-body: #d8d8e4;
+      --phone-screen: #eaeaf0;
+      --dock-bg: rgba(0, 0, 0, 0.06);
+      --toggle-bg: rgba(0, 0, 0, 0.08);
+      --toggle-knob: #1a1a2e;
+      --icon-stroke: rgba(0, 0, 0, 0.55);
     }
 
     html { scroll-behavior: smooth; }
@@ -42,6 +74,7 @@
       color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
+      transition: background 0.4s ease, color 0.4s ease;
     }
 
     /* Subtle background texture */
@@ -55,6 +88,46 @@
       pointer-events: none;
       z-index: 0;
     }
+
+    /* ─── Theme Toggle ─── */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      background: var(--toggle-bg);
+      border: 1px solid rgba(128, 128, 128, 0.15);
+      border-radius: 50px;
+      padding: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      transition: background 0.3s ease, border-color 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .theme-toggle:hover {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .theme-toggle svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-toggle:hover svg {
+      transform: rotate(15deg);
+    }
+
+    .theme-toggle .icon-sun { display: none; }
+    .theme-toggle .icon-moon { display: block; }
+    [data-theme="light"] .theme-toggle .icon-sun { display: block; }
+    [data-theme="light"] .theme-toggle .icon-moon { display: none; }
 
     /* ─── Layout ─── */
     .page {
@@ -95,8 +168,22 @@
         0 20px 60px rgba(0, 0, 0, 0.6),
         0 0 60px rgba(59, 130, 246, 0.18),
         0 0 120px rgba(59, 130, 246, 0.10);
-      transition: box-shadow 0.4s ease;
+      transition: box-shadow 0.4s ease, background 0.4s ease;
       position: relative;
+      animation: phone-float 4s ease-in-out infinite;
+    }
+
+    [data-theme="light"] .phone {
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.08),
+        0 20px 60px rgba(0, 0, 0, 0.15),
+        0 0 60px rgba(59, 130, 246, 0.12),
+        0 0 120px rgba(59, 130, 246, 0.06);
+    }
+
+    @keyframes phone-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     .phone::before {
@@ -110,6 +197,10 @@
       background: rgba(255, 255, 255, 0.08);
       border-radius: 3px;
       z-index: 2;
+    }
+
+    [data-theme="light"] .phone::before {
+      background: rgba(0, 0, 0, 0.08);
     }
 
     .phone::after {
@@ -128,6 +219,7 @@
         0 20px 60px rgba(0, 0, 0, 0.6),
         0 0 80px rgba(59, 130, 246, 0.35),
         0 0 160px rgba(59, 130, 246, 0.18);
+      animation: none;
     }
 
     .screen {
@@ -140,6 +232,7 @@
       flex-direction: column;
       justify-content: space-between;
       padding: 34px 14px 10px;
+      transition: background 0.4s ease;
     }
 
     .app-grid {
@@ -159,21 +252,38 @@
       height: 38px;
       border-radius: 10px;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.4s ease;
     }
 
-    .app-icon:nth-child(1) { background: rgba(59, 130, 246, 0.35); }
-    .app-icon:nth-child(2) { background: rgba(52, 199, 89, 0.3); }
-    .app-icon:nth-child(3) { background: rgba(255, 149, 0, 0.3); }
-    .app-icon:nth-child(4) { background: rgba(175, 82, 222, 0.3); }
+    .app-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--icon-stroke);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Grid icon colors */
+    .app-row .app-icon:nth-child(1) { background: rgba(59, 130, 246, 0.35); }
+    .app-row .app-icon:nth-child(2) { background: rgba(52, 199, 89, 0.3); }
+    .app-row .app-icon:nth-child(3) { background: rgba(255, 149, 0, 0.3); }
+    .app-row .app-icon:nth-child(4) { background: rgba(175, 82, 222, 0.3); }
 
     .dock {
       background: var(--dock-bg);
       border-radius: 18px;
-      padding: 10px 14px;
+      padding: 10px 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-top: 12px;
+      gap: 10px;
+      transition: background 0.4s ease;
     }
 
     .dock .app-icon {
@@ -202,8 +312,9 @@
       font-size: 9px;
       font-weight: 700;
       color: #fff;
-      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, border-color 0.4s ease;
       transform-origin: center;
+      z-index: 2;
     }
 
     .badge.hidden {
@@ -219,6 +330,29 @@
       0% { transform: scale(0); opacity: 0; }
       60% { transform: scale(1.2); }
       100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* ─── Particle Burst ─── */
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--badge-pop);
+      pointer-events: none;
+      z-index: 10;
+      animation: particle-fly 0.6s ease-out forwards;
+    }
+
+    @keyframes particle-fly {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--px), var(--py)) scale(0);
+      }
     }
 
     /* ─── Clear Button ─── */
@@ -258,7 +392,7 @@
     }
 
     .clear-btn.cleared::after {
-      content: '✓';
+      content: '\2713';
       margin-left: 6px;
     }
 
@@ -293,7 +427,7 @@
       line-height: 1.2;
       letter-spacing: -0.03em;
       margin-bottom: 12px;
-      background: linear-gradient(135deg, #e8e8f0 30%, #8888a0 100%);
+      background: linear-gradient(135deg, var(--text) 30%, var(--text-dim) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -412,6 +546,17 @@
   </style>
 </head>
 <body>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
+
   <div class="page">
 
     <!-- Left: Demo -->
@@ -419,30 +564,76 @@
       <div class="phone phone-entrance" id="phone">
         <div class="screen">
           <div class="app-grid">
+            <!-- Row 1 -->
             <div class="app-row">
-              <div class="app-icon"><span class="badge pop">3</span></div>
-              <div class="app-icon"><span class="badge pop">12</span></div>
-              <div class="app-icon"><span class="badge pop">1</span></div>
-              <div class="app-icon"><span class="badge pop">5</span></div>
+              <div class="app-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+                <span class="badge pop">3</span>
+              </div>
+              <div class="app-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span class="badge pop">12</span>
+              </div>
+              <div class="app-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+                <span class="badge pop">1</span>
+              </div>
+              <div class="app-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span class="badge pop">5</span>
+              </div>
             </div>
+            <!-- Row 2 -->
             <div class="app-row">
-              <div class="app-icon"><span class="badge pop">8</span></div>
-              <div class="app-icon"></div>
-              <div class="app-icon"><span class="badge pop">2</span></div>
-              <div class="app-icon"></div>
+              <div class="app-icon">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <span class="badge pop">8</span>
+              </div>
+              <div class="app-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <div class="app-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <span class="badge pop">2</span>
+              </div>
+              <div class="app-icon">
+                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              </div>
             </div>
+            <!-- Row 3 -->
             <div class="app-row">
-              <div class="app-icon"></div>
-              <div class="app-icon"><span class="badge pop">99</span></div>
-              <div class="app-icon"></div>
-              <div class="app-icon"><span class="badge pop">7</span></div>
+              <div class="app-icon">
+                <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+              </div>
+              <div class="app-icon">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <span class="badge pop">99</span>
+              </div>
+              <div class="app-icon">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <div class="app-icon">
+                <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                <span class="badge pop">7</span>
+              </div>
             </div>
           </div>
           <div class="dock">
-            <div class="app-icon"><span class="badge pop">24</span></div>
-            <div class="app-icon"><span class="badge pop">6</span></div>
-            <div class="app-icon"></div>
-            <div class="app-icon"><span class="badge pop">41</span></div>
+            <div class="app-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span class="badge pop">24</span>
+            </div>
+            <div class="app-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+              <span class="badge pop">6</span>
+            </div>
+            <div class="app-icon">
+              <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            </div>
+            <div class="app-icon">
+              <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              <span class="badge pop">41</span>
+            </div>
           </div>
         </div>
       </div>
@@ -465,38 +656,66 @@
       <div class="section-block fade-up fade-up-d4">
         <h2>The idea</h2>
         <p>
-          You know that creeping anxiety when your home screen is littered with red badges? 
-          12 unread emails, 99+ messages, 5 updates you'll never install. Badge Buster's 
+          You know that creeping anxiety when your home screen is littered with red badges?
+          12 unread emails, 99+ messages, 5 updates you'll never install. Badge Buster's
           premise is dead simple — one button, all of it gone.
         </p>
       </div>
       <div class="section-block fade-up fade-up-d4">
         <h2>Why it's a concept</h2>
         <p>
-          iOS and Android sandbox every app for security reasons, meaning no app can reach 
-          into another's notification badges and clear them. So Badge Buster will never ship 
-          — it's a design exploration of what the UX <em>could</em> feel like if that 
+          iOS and Android sandbox every app for security reasons, meaning no app can reach
+          into another's notification badges and clear them. So Badge Buster will never ship
+          — it's a design exploration of what the UX <em>could</em> feel like if that
           restriction didn't exist.
         </p>
       </div>
       <div class="section-block fade-up fade-up-d5">
         <h2>The frustration it reflects</h2>
         <p>
-          Those little red circles are engineered to pull you back in. Most of the time 
-          they're noise, not signal. Badge Buster is a nod to the shared desire for a 
+          Those little red circles are engineered to pull you back in. Most of the time
+          they're noise, not signal. Badge Buster is a nod to the shared desire for a
           calmer, less demanding phone.
         </p>
       </div>
 
       <p class="footnote fade-up fade-up-d5">
-        Built by <a href="https://github.com/Degen11" target="_blank" rel="noopener">Degen Hill</a> 
-        &nbsp;·&nbsp; A UX concept, not a shipping product.
+        Built by <a href="https://github.com/Degen11" target="_blank" rel="noopener">Degen Hill</a>
+        &nbsp;&middot;&nbsp; A UX concept, not a shipping product.
       </p>
     </div>
   </div>
 
   <script>
     let cleared = false;
+
+    // ─── Particle Burst ───
+    function emitParticles(badge) {
+      const rect = badge.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const count = 8;
+
+      for (let i = 0; i < count; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.5;
+        const dist = 18 + Math.random() * 14;
+        const px = Math.cos(angle) * dist;
+        const py = Math.sin(angle) * dist;
+        particle.style.cssText = `
+          left: ${cx}px;
+          top: ${cy}px;
+          --px: ${px}px;
+          --py: ${py}px;
+          width: ${2 + Math.random() * 3}px;
+          height: ${2 + Math.random() * 3}px;
+          position: fixed;
+        `;
+        document.body.appendChild(particle);
+        particle.addEventListener('animationend', () => particle.remove());
+      }
+    }
 
     function clearBadges() {
       if (cleared) return;
@@ -507,9 +726,10 @@
 
       phone.classList.add('clearing');
 
-      // Stagger-remove badges
+      // Stagger-remove badges with particles
       badges.forEach((badge, i) => {
         setTimeout(() => {
+          emitParticles(badge);
           badge.classList.add('hidden');
         }, i * 60);
       });
@@ -548,6 +768,22 @@
       btn.classList.remove('cleared');
       cleared = false;
     }
+
+    // ─── Theme Toggle ───
+    const toggle = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+    toggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      if (next === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+      } else {
+        document.documentElement.setAttribute('data-theme', next);
+      }
+      localStorage.setItem('theme', next);
+    });
   </script>
 </body>
 </html>
