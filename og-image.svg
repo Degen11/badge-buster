@@ -1,0 +1,286 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d0d1a"/>
+      <stop offset="100%" stop-color="#090910"/>
+    </linearGradient>
+
+    <!-- Left blue glow -->
+    <radialGradient id="glowL" cx="22%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Right purple glow -->
+    <radialGradient id="glowR" cx="80%" cy="45%" r="40%">
+      <stop offset="0%" stop-color="#6333dc" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#6333dc" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Blue accent gradient -->
+    <linearGradient id="blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+
+    <!-- Logo box background -->
+    <linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a2240"/>
+      <stop offset="100%" stop-color="#0f0f1a"/>
+    </linearGradient>
+
+    <!-- Button gradient -->
+    <linearGradient id="btn" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+
+    <!-- Phone body gradient -->
+    <linearGradient id="phoneBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#252540"/>
+      <stop offset="100%" stop-color="#18182a"/>
+    </linearGradient>
+
+    <!-- Phone drop shadow (blue glow) -->
+    <filter id="shadow" x="-25%" y="-15%" width="150%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="28" flood-color="#3b82f6" flood-opacity="0.22"/>
+    </filter>
+
+    <!-- Badge glow -->
+    <filter id="badgeGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Screen clip path -->
+    <clipPath id="screenClip">
+      <rect x="726" y="62" width="224" height="507" rx="28"/>
+    </clipPath>
+  </defs>
+
+  <!-- === BACKGROUND === -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glowL)"/>
+  <rect width="1200" height="630" fill="url(#glowR)"/>
+
+  <!-- Subtle vertical divider -->
+  <rect x="666" y="0" width="1" height="630" fill="#3b82f6" opacity="0.07"/>
+
+  <!-- === LEFT SECTION === -->
+
+  <!-- BB Logo box -->
+  <rect x="60" y="115" width="80" height="80" rx="20" fill="url(#logoBg)" stroke="#2a3a5a" stroke-width="1.5"/>
+  <text x="100" y="173" font-family="system-ui,-apple-system,'Segoe UI',Arial,sans-serif" font-size="40" font-weight="800" fill="url(#blue)" text-anchor="middle" letter-spacing="-2">BB</text>
+  <!-- Notification dot on logo -->
+  <circle cx="132" cy="123" r="11" fill="#ff3b30" filter="url(#badgeGlow)"/>
+  <text x="132" y="127.5" font-family="system-ui,Arial,sans-serif" font-size="12" font-weight="700" fill="white" text-anchor="middle">!</text>
+
+  <!-- Title: Badge -->
+  <text x="60" y="292" font-family="system-ui,-apple-system,'Segoe UI',Arial,sans-serif" font-size="88" font-weight="800" fill="#e8e8f0" letter-spacing="-3">Badge</text>
+
+  <!-- Title: Buster (blue gradient) -->
+  <text x="60" y="380" font-family="system-ui,-apple-system,'Segoe UI',Arial,sans-serif" font-size="88" font-weight="800" fill="url(#blue)" letter-spacing="-3">Buster</text>
+
+  <!-- Blue accent underline -->
+  <rect x="60" y="394" width="224" height="5" rx="2.5" fill="url(#blue)"/>
+
+  <!-- Tagline -->
+  <text x="60" y="443" font-family="system-ui,-apple-system,'Segoe UI',Arial,sans-serif" font-size="20" fill="#9898b8">One tap to wipe every red dot</text>
+  <text x="60" y="470" font-family="system-ui,-apple-system,'Segoe UI',Arial,sans-serif" font-size="20" fill="#9898b8">off your home screen.</text>
+
+  <!-- Concept pill tag -->
+  <rect x="60" y="496" width="198" height="32" rx="16" fill="#141430" stroke="#2a2a50" stroke-width="1"/>
+  <text x="159" y="517" font-family="system-ui,-apple-system,'Segoe UI',Arial,sans-serif" font-size="13" fill="#5878c8" text-anchor="middle" font-weight="500">A UX concept · No app needed</text>
+
+  <!-- URL -->
+  <text x="60" y="578" font-family="system-ui,-apple-system,'Segoe UI',Arial,sans-serif" font-size="15" fill="#4060a0" letter-spacing="0.4">badge-buster.vercel.app</text>
+
+  <!-- Scattered decorative red dots (badge fatigue motif) -->
+  <circle cx="672" cy="148" r="4.5" fill="#ff3b30" opacity="0.28"/>
+  <circle cx="686" cy="310" r="3.5" fill="#ff3b30" opacity="0.22"/>
+  <circle cx="660" cy="450" r="5.5" fill="#ff3b30" opacity="0.18"/>
+  <circle cx="690" cy="520" r="3" fill="#ff3b30" opacity="0.25"/>
+  <circle cx="650" cy="220" r="2.5" fill="#ff3b30" opacity="0.2"/>
+
+  <!-- === RIGHT SECTION: Phone Mockup === -->
+
+  <!-- Phone glow ellipse -->
+  <ellipse cx="838" cy="594" rx="105" ry="16" fill="#3b82f6" opacity="0.12"/>
+
+  <!-- Phone hardware body -->
+  <rect x="715" y="50" width="246" height="530" rx="42" fill="url(#phoneBg)" filter="url(#shadow)"/>
+  <rect x="715" y="50" width="246" height="530" rx="42" fill="none" stroke="#2e2e4a" stroke-width="1.5"/>
+
+  <!-- Side buttons (hardware) -->
+  <rect x="959" y="158" width="5" height="46" rx="2.5" fill="#2a2a42"/>
+  <rect x="712" y="148" width="5" height="36" rx="2.5" fill="#2a2a42"/>
+  <rect x="712" y="194" width="5" height="36" rx="2.5" fill="#2a2a42"/>
+
+  <!-- === SCREEN CONTENT (clipped to screen shape) === -->
+  <g clip-path="url(#screenClip)">
+
+    <!-- Screen fill -->
+    <rect x="726" y="62" width="224" height="507" rx="28" fill="#0e0e18"/>
+
+    <!-- Dynamic Island pill -->
+    <rect x="797" y="72" width="82" height="24" rx="12" fill="#0a0a12"/>
+
+    <!-- Status bar: time -->
+    <text x="740" y="95" font-family="system-ui,-apple-system,'Segoe UI',Arial,sans-serif" font-size="12" font-weight="600" fill="#d8d8e8">9:41</text>
+
+    <!-- Status bar: signal bars -->
+    <rect x="893" y="87" width="3" height="6" rx="1" fill="#c0c0d0"/>
+    <rect x="898" y="85" width="3" height="8" rx="1" fill="#c0c0d0"/>
+    <rect x="903" y="83" width="3" height="10" rx="1" fill="#c0c0d0"/>
+    <rect x="908" y="81" width="3" height="12" rx="1" fill="#c0c0d0" opacity="0.4"/>
+
+    <!-- Status bar: battery -->
+    <rect x="916" y="84" width="22" height="12" rx="2" fill="none" stroke="#c0c0d0" stroke-width="1.2"/>
+    <rect x="917.5" y="85.5" width="16" height="9" rx="1" fill="#c0c0d0"/>
+    <rect x="938.5" y="87" width="2.5" height="6" rx="1" fill="#c0c0d0" opacity="0.6"/>
+
+    <!-- ====================================================== -->
+    <!-- APP GRID: 4 cols × 4 rows, 46×46 icons, 10px gap       -->
+    <!-- Col x: 732, 788, 844, 900                               -->
+    <!-- Row y: 110, 166, 222, 278                               -->
+    <!-- Badge center: (icon_x + 38, icon_y + 6)                 -->
+    <!-- ====================================================== -->
+
+    <!-- ROW 1 ================================================ -->
+
+    <!-- [0,0] Gmail: red, "G", badge 12 -->
+    <rect x="732" y="110" width="46" height="46" rx="11" fill="#c5221f"/>
+    <text x="755" y="140" font-family="system-ui,Arial,sans-serif" font-size="20" font-weight="700" fill="white" text-anchor="middle">G</text>
+    <circle cx="770" cy="116" r="10" fill="#ff3b30" filter="url(#badgeGlow)"/>
+    <text x="770" y="120" font-family="system-ui,Arial,sans-serif" font-size="9" font-weight="700" fill="white" text-anchor="middle">12</text>
+
+    <!-- [1,0] WhatsApp: green, "W", badge 3 -->
+    <rect x="788" y="110" width="46" height="46" rx="11" fill="#128c7e"/>
+    <text x="811" y="140" font-family="system-ui,Arial,sans-serif" font-size="20" font-weight="700" fill="white" text-anchor="middle">W</text>
+    <circle cx="826" cy="116" r="9" fill="#ff3b30" filter="url(#badgeGlow)"/>
+    <text x="826" y="120" font-family="system-ui,Arial,sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">3</text>
+
+    <!-- [2,0] Instagram: purple, "IG", badge 7 -->
+    <rect x="844" y="110" width="46" height="46" rx="11" fill="#833ab4"/>
+    <text x="867" y="140" font-family="system-ui,Arial,sans-serif" font-size="15" font-weight="700" fill="white" text-anchor="middle">IG</text>
+    <circle cx="882" cy="116" r="9" fill="#ff3b30" filter="url(#badgeGlow)"/>
+    <text x="882" y="120" font-family="system-ui,Arial,sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">7</text>
+
+    <!-- [3,0] X/Twitter: dark, "X", NO badge -->
+    <rect x="900" y="110" width="46" height="46" rx="11" fill="#16181c"/>
+    <text x="923" y="140" font-family="system-ui,Arial,sans-serif" font-size="20" font-weight="700" fill="white" text-anchor="middle">X</text>
+
+    <!-- ROW 2 ================================================ -->
+
+    <!-- [0,1] Discord: indigo, "DC", badge 24 -->
+    <rect x="732" y="166" width="46" height="46" rx="11" fill="#5865f2"/>
+    <text x="755" y="196" font-family="system-ui,Arial,sans-serif" font-size="14" font-weight="700" fill="white" text-anchor="middle">DC</text>
+    <circle cx="770" cy="172" r="10" fill="#ff3b30" filter="url(#badgeGlow)"/>
+    <text x="770" y="176" font-family="system-ui,Arial,sans-serif" font-size="8.5" font-weight="700" fill="white" text-anchor="middle">24</text>
+
+    <!-- [1,1] Spotify: dark, "S" green, NO badge -->
+    <rect x="788" y="166" width="46" height="46" rx="11" fill="#121212"/>
+    <text x="811" y="196" font-family="system-ui,Arial,sans-serif" font-size="20" font-weight="700" fill="#1db954" text-anchor="middle">S</text>
+
+    <!-- [2,1] YouTube: very dark red, "YT" red, badge 5 -->
+    <rect x="844" y="166" width="46" height="46" rx="11" fill="#1a0000"/>
+    <text x="867" y="196" font-family="system-ui,Arial,sans-serif" font-size="14" font-weight="700" fill="#ff2020" text-anchor="middle">YT</text>
+    <circle cx="882" cy="172" r="9" fill="#ff3b30" filter="url(#badgeGlow)"/>
+    <text x="882" y="176" font-family="system-ui,Arial,sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">5</text>
+
+    <!-- [3,1] Telegram: sky blue, "T", badge 11 -->
+    <rect x="900" y="166" width="46" height="46" rx="11" fill="#0088cc"/>
+    <text x="923" y="196" font-family="system-ui,Arial,sans-serif" font-size="20" font-weight="700" fill="white" text-anchor="middle">T</text>
+    <circle cx="938" cy="172" r="10" fill="#ff3b30" filter="url(#badgeGlow)"/>
+    <text x="938" y="176" font-family="system-ui,Arial,sans-serif" font-size="8.5" font-weight="700" fill="white" text-anchor="middle">11</text>
+
+    <!-- ROW 3 ================================================ -->
+
+    <!-- [0,2] Reddit: orange, "R", badge 4 -->
+    <rect x="732" y="222" width="46" height="46" rx="11" fill="#ff4500"/>
+    <text x="755" y="252" font-family="system-ui,Arial,sans-serif" font-size="20" font-weight="700" fill="white" text-anchor="middle">R</text>
+    <circle cx="770" cy="228" r="9" fill="#ff3b30" filter="url(#badgeGlow)"/>
+    <text x="770" y="232" font-family="system-ui,Arial,sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">4</text>
+
+    <!-- [1,2] Snapchat: yellow, "SC" dark, badge 9 -->
+    <rect x="788" y="222" width="46" height="46" rx="11" fill="#ffee00"/>
+    <text x="811" y="252" font-family="system-ui,Arial,sans-serif" font-size="14" font-weight="700" fill="#1a1a1a" text-anchor="middle">SC</text>
+    <circle cx="826" cy="228" r="9" fill="#ff3b30" filter="url(#badgeGlow)"/>
+    <text x="826" y="232" font-family="system-ui,Arial,sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">9</text>
+
+    <!-- [2,2] TikTok: near black, "Tk", NO badge -->
+    <rect x="844" y="222" width="46" height="46" rx="11" fill="#080808"/>
+    <text x="867" y="252" font-family="system-ui,Arial,sans-serif" font-size="14" font-weight="700" fill="white" text-anchor="middle">Tk</text>
+
+    <!-- [3,2] Messages: green, "M", badge 2 -->
+    <rect x="900" y="222" width="46" height="46" rx="11" fill="#34c759"/>
+    <text x="923" y="252" font-family="system-ui,Arial,sans-serif" font-size="20" font-weight="700" fill="white" text-anchor="middle">M</text>
+    <circle cx="938" cy="228" r="9" fill="#ff3b30" filter="url(#badgeGlow)"/>
+    <text x="938" y="232" font-family="system-ui,Arial,sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">2</text>
+
+    <!-- ROW 4 ================================================ -->
+
+    <!-- [0,3] Safari: blue, "Sa", NO badge -->
+    <rect x="732" y="278" width="46" height="46" rx="11" fill="#006cff"/>
+    <text x="755" y="308" font-family="system-ui,Arial,sans-serif" font-size="14" font-weight="700" fill="white" text-anchor="middle">Sa</text>
+
+    <!-- [1,3] Music: coral red, "Mu", badge 18 -->
+    <rect x="788" y="278" width="46" height="46" rx="11" fill="#fc3c44"/>
+    <text x="811" y="308" font-family="system-ui,Arial,sans-serif" font-size="14" font-weight="700" fill="white" text-anchor="middle">Mu</text>
+    <circle cx="826" cy="284" r="10" fill="#ff3b30" filter="url(#badgeGlow)"/>
+    <text x="826" y="288" font-family="system-ui,Arial,sans-serif" font-size="8.5" font-weight="700" fill="white" text-anchor="middle">18</text>
+
+    <!-- [2,3] App Store: blue, "AS", badge 6 -->
+    <rect x="844" y="278" width="46" height="46" rx="11" fill="#0d84ff"/>
+    <text x="867" y="308" font-family="system-ui,Arial,sans-serif" font-size="14" font-weight="700" fill="white" text-anchor="middle">AS</text>
+    <circle cx="882" cy="284" r="9" fill="#ff3b30" filter="url(#badgeGlow)"/>
+    <text x="882" y="288" font-family="system-ui,Arial,sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">6</text>
+
+    <!-- [3,3] Settings: gray, "Se", NO badge -->
+    <rect x="900" y="278" width="46" height="46" rx="11" fill="#636366"/>
+    <text x="923" y="308" font-family="system-ui,Arial,sans-serif" font-size="14" font-weight="700" fill="white" text-anchor="middle">Se</text>
+
+    <!-- ====================================================== -->
+    <!-- BELOW GRID                                              -->
+    <!-- ====================================================== -->
+
+    <!-- Thin divider -->
+    <line x1="732" y1="338" x2="945" y2="338" stroke="#2a2a3a" stroke-width="1" opacity="0.7"/>
+
+    <!-- Badge count label -->
+    <text x="838" y="362" font-family="system-ui,-apple-system,'Segoe UI',Arial,sans-serif" font-size="13" fill="#5a5a80" text-anchor="middle">101 notification badges · 11 apps</text>
+
+    <!-- Clear All Badges button -->
+    <rect x="742" y="372" width="192" height="50" rx="25" fill="url(#btn)"/>
+    <!-- Subtle top highlight on button -->
+    <rect x="742" y="372" width="192" height="26" rx="25" fill="white" opacity="0.07"/>
+    <text x="838" y="403" font-family="system-ui,-apple-system,'Segoe UI',Arial,sans-serif" font-size="16" font-weight="700" fill="white" text-anchor="middle">Clear All Badges</text>
+
+    <!-- Dock bar -->
+    <rect x="732" y="448" width="213" height="72" rx="18" fill="#15152a" opacity="0.92"/>
+    <rect x="732" y="448" width="213" height="72" rx="18" fill="none" stroke="#242440" stroke-width="1"/>
+
+    <!-- Dock icons (4) -->
+    <rect x="742" y="459" width="42" height="42" rx="10" fill="#1d6ae8"/>
+    <text x="763" y="486" font-family="system-ui,Arial,sans-serif" font-size="17" font-weight="700" fill="white" text-anchor="middle">P</text>
+
+    <rect x="792" y="459" width="42" height="42" rx="10" fill="#1a9140"/>
+    <text x="813" y="486" font-family="system-ui,Arial,sans-serif" font-size="17" font-weight="700" fill="white" text-anchor="middle">M</text>
+
+    <rect x="842" y="459" width="42" height="42" rx="10" fill="#e06812"/>
+    <text x="863" y="486" font-family="system-ui,Arial,sans-serif" font-size="17" font-weight="700" fill="white" text-anchor="middle">C</text>
+
+    <rect x="892" y="459" width="42" height="42" rx="10" fill="#1e1e34" stroke="#2e2e48" stroke-width="1"/>
+    <text x="913" y="487" font-family="system-ui,Arial,sans-serif" font-size="22" fill="#60608a" text-anchor="middle">···</text>
+
+    <!-- Home indicator bar -->
+    <rect x="798" y="542" width="82" height="5" rx="2.5" fill="#8888a0" opacity="0.38"/>
+
+  </g>
+  <!-- End screen clip -->
+
+</svg>
