@@ -11,20 +11,28 @@
   <meta property="og:title" content="Badge Buster" />
   <meta property="og:description" content="One tap to wipe every red dot off your home screen. A UX concept for a calmer phone." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/og-image.svg" />
+  <meta property="og:image" content="https://badge-buster.vercel.app/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:url" content="https://badge-buster.vercel.app" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Badge Buster" />
   <meta name="twitter:description" content="One tap to wipe every red dot off your home screen. A UX concept for a calmer phone." />
-  <meta name="twitter:image" content="/og-image.svg" />
+  <meta name="twitter:image" content="https://badge-buster.vercel.app/og-image.png" />
 
   <!-- Fonts -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700&family=Outfit:wght@300;400;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700&family=Outfit:wght@300;400;600;700;800&display=swap" /></noscript>
 
   <script>
+    // Apply theme before first paint: saved choice wins, then the OS preference
+    (function () {
+      let theme = null;
+      try { theme = localStorage.getItem('theme'); } catch (e) {}
+      if (!theme && window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    })();
+
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
 <script defer src="/_vercel/analytics/script.js"></script>
@@ -475,17 +483,17 @@
 
     .footnote {
       font-size: 13px;
-      color: rgba(136, 136, 160, 0.5);
+      color: var(--text-dim);
       margin-top: 24px;
     }
 
     .footnote a {
-      color: rgba(59, 130, 246, 0.6);
+      color: var(--accent);
       text-decoration: none;
     }
 
     .footnote a:hover {
-      color: var(--accent);
+      text-decoration: underline;
     }
 
     /* ─── Responsive ─── */
@@ -590,7 +598,7 @@
                 <img src="https://cdn.simpleicons.org/instagram/ffffff" alt="Instagram">
                 <span class="badge pop">1</span>
               </div>
-              <div class="app-icon" style="background: #1DA1F2;">
+              <div class="app-icon" style="background: #000000;">
                 <img src="https://cdn.simpleicons.org/x/ffffff" alt="X">
                 <span class="badge pop">5</span>
               </div>
@@ -622,7 +630,7 @@
                 <span class="badge pop">99</span>
               </div>
               <div class="app-icon" style="background: #FFFC00;">
-                <img src="https://cdn.simpleicons.org/snapchat/ffffff" alt="Snapchat">
+                <img src="https://cdn.simpleicons.org/snapchat/000000" alt="Snapchat">
               </div>
               <div class="app-icon" style="background: #000000;">
                 <img src="https://cdn.simpleicons.org/threads/ffffff" alt="Threads">
@@ -669,7 +677,7 @@
         <h2>The idea</h2>
         <p>
           You know that creeping anxiety when your home screen is littered with red badges?
-          12 unread emails, 99+ messages, 5 updates you'll never install. Badge Buster's
+          12 unread chats, 99 Reddit alerts, 41 updates you'll never install. Badge Buster's
           premise is dead simple — one button, all of it gone.
         </p>
       </div>
@@ -792,8 +800,6 @@
 
     // ─── Theme Toggle with circular reveal ───
     const toggle = document.getElementById('themeToggle');
-    const saved = localStorage.getItem('theme');
-    if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
 
     function applyTheme(next) {
       if (next === 'dark') {
@@ -801,7 +807,7 @@
       } else {
         document.documentElement.setAttribute('data-theme', next);
       }
-      localStorage.setItem('theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
     }
 
     toggle.addEventListener('click', (e) => {
