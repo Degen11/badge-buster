@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
-  <rect width="128" height="128" rx="28" fill="#0a0a0a"/>
-  <!-- Escape: an open ring, the badge slipping out through the gap -->
-  <path d="M88.19 57.74A30 30 0 1 1 61.05 38.02" fill="none" stroke="#fafafa" stroke-width="14" stroke-linecap="round"/>
-  <circle cx="98" cy="30" r="9" fill="#ff3b30"/>
-</svg>
