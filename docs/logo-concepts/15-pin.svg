@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1c1c33"/><stop offset="1" stop-color="#0c0c16"/></linearGradient>
+  <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7cb6ff"/><stop offset=".55" stop-color="#3b82f6"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient>
+  <radialGradient id="red" cx=".38" cy=".32" r=".75"><stop offset="0" stop-color="#ff8a80"/><stop offset=".45" stop-color="#ff3b30"/><stop offset="1" stop-color="#b3121a"/></radialGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <rect x="1" y="1" width="126" height="126" rx="27" fill="none" stroke="#fff" stroke-opacity=".07" stroke-width="2"/>
+  <!-- Pin: the badge is a balloon, and here comes the pin -->
+  <path d="M67 84h10l-2 6h-6z" fill="#b3121a"/>
+  <path d="M72 90q-5 10 2 22" fill="none" stroke="#5b6585" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="72" cy="54" r="32" fill="url(#red)"/>
+  <ellipse cx="60" cy="38" rx="9" ry="5.5" fill="#fff" opacity=".45" transform="rotate(-35 60 38)"/>
+  <path d="M51 76l5-4M53 80l6-2" stroke="#7a0b10" stroke-width="2" stroke-linecap="round"/>
+  <path d="M18 110L50 78" stroke="#dfe5f2" stroke-width="3.5" stroke-linecap="round"/>
+  <g stroke="#ffe08a" stroke-width="3" stroke-linecap="round"><path d="M47.0 85.9L45.9 91.8"/><path d="M42.8 83.0L37.6 86.0"/><path d="M42.4 77.9L36.7 75.9"/><path d="M45.9 74.4L43.9 68.7"/><path d="M51.0 74.8L54.0 69.6"/></g>
+  <circle cx="18" cy="110" r="10" fill="url(#blue)"/>
+  <circle cx="15" cy="106" r="3" fill="#fff" opacity=".5"/>
+</svg>
