@@ -24,12 +24,6 @@
       <stop offset="100%" stop-color="#3b82f6"/>
     </linearGradient>
 
-    <!-- Logo box background -->
-    <linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1a2240"/>
-      <stop offset="100%" stop-color="#0f0f1a"/>
-    </linearGradient>
-
     <!-- Button gradient -->
     <linearGradient id="btn" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#3b82f6"/>
@@ -72,12 +66,12 @@
 
   <!-- === LEFT SECTION === -->
 
-  <!-- BB Logo box -->
-  <rect x="60" y="115" width="80" height="80" rx="20" fill="url(#logoBg)" stroke="#2a3a5a" stroke-width="1.5"/>
-  <text x="100" y="173" font-family="system-ui,-apple-system,'Segoe UI',Arial,sans-serif" font-size="40" font-weight="800" fill="url(#blue)" text-anchor="middle" letter-spacing="-2">BB</text>
-  <!-- Notification dot on logo -->
-  <circle cx="132" cy="123" r="11" fill="#ff3b30" filter="url(#badgeGlow)"/>
-  <text x="132" y="127.5" font-family="system-ui,Arial,sans-serif" font-size="12" font-weight="700" fill="white" text-anchor="middle">!</text>
+  <!-- Slash logo -->
+  <g transform="translate(60 115) scale(0.625)">
+    <rect width="128" height="128" rx="28" fill="#0a0a0a" stroke="#2a2a3a" stroke-width="2.4"/>
+    <path d="M37.15 84.85A34 34 0 1 1 84.85 37.15Z" fill="#fafafa"/>
+    <path d="M90.85 43.15A34 34 0 1 1 43.15 90.85Z" fill="#ff3b30"/>
+  </g>
 
   <!-- Title: Badge -->
   <text x="60" y="292" font-family="system-ui,-apple-system,'Segoe UI',Arial,sans-serif" font-size="88" font-weight="800" fill="#e8e8f0" letter-spacing="-3">Badge</text>
