@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <rect width="128" height="128" rx="28" fill="#0a0a0a"/>
+  <!-- Check: the red dot is where the checkmark starts -->
+  <path d="M38 68L58 88L98 44" fill="none" stroke="#fafafa" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="34" cy="64" r="13" fill="#ff3b30"/>
+</svg>

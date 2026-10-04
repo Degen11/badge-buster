@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <mask id="m"><rect width="128" height="128" fill="#fff"/><circle cx="92" cy="36" r="22" fill="#000"/></mask>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#0a0a0a"/>
+  <!-- Notch: an app icon with the badge-shaped hole where the badge used to be -->
+  <rect x="26" y="34" width="68" height="68" rx="18" fill="#fafafa" mask="url(#m)"/>
+</svg>

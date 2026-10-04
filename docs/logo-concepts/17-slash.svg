@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <clipPath id="a"><polygon points="0,0 128,0 0,128"/></clipPath>
+    <clipPath id="b"><polygon points="128,0 128,128 0,128"/></clipPath>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#0a0a0a"/>
+  <!-- Slash: the badge cut clean in two -->
+  <circle cx="61" cy="61" r="34" fill="#fafafa" clip-path="url(#a)" transform="translate(-3 -3)"/>
+  <circle cx="67" cy="67" r="34" fill="#ff3b30" clip-path="url(#b)" transform="translate(3 3)"/>
+</svg>
